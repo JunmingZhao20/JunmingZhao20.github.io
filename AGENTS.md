@@ -2,6 +2,12 @@
 
 A simple, clean, and responsive Jekyll theme for academics.
 
+# 总体规则：
+
+- 用中文回答我，代码中不管是注释还是print都用英文
+- 对于英文专有名词，不要进行翻译，而是直接使用英文
+- 当我要你解释代码时，请仔细思考，尽可能详细易懂可读，要向对待一个初学者一样对待我
+
 ## Quick Links by Role
 
 - **Are you a coding agent?** → Read [`.github/copilot-instructions.md`](.github/copilot-instructions.md) first (tech stack, build, CI/CD, common pitfalls & solutions)
@@ -46,7 +52,7 @@ Before every commit, you **must** run these steps:
     ```bash
     # Rebuild the site
     docker compose up --build
-
+    
     # Verify by visiting http://localhost:8080.
     # Check navigation, pages, images, and dark mode.
     ```
