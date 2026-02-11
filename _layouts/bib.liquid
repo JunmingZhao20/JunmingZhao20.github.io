@@ -2,7 +2,7 @@
 ---
 <div class="row">
   {% if site.enable_publication_thumbnails %}
-    <div class="col col-sm-2 abbr">
+    <div class="col-12 col-sm-4 col-md-4 abbr">
       {% comment %} Venue badge {% endcomment %}
       {%- if entry.abbr -%}
         {%- if site.data.venues[entry.abbr] -%}
@@ -31,10 +31,10 @@
       {% if entry.preview_video %}
         {% assign video_path = entry.preview_video %}
         {% if video_path contains '://' %}
-          {% include video.liquid path=video_path class="preview z-depth-1 rounded" autoplay=true muted=true loop=true playsinline=true controls=true width="240" %}
+          {% include video.liquid path=video_path class="preview z-depth-1 rounded" autoplay=true muted=true loop=true playsinline=true controls=true width="100%" max-width="280" %}
         {% else %}
           {% assign video_path = video_path | prepend: '/assets/video/' | relative_url %}
-          {% include video.liquid path=video_path class="preview z-depth-1 rounded" autoplay=true muted=true loop=true playsinline=true controls=true width="240" %}
+          {% include video.liquid path=video_path class="preview z-depth-1 rounded" autoplay=true muted=true loop=true playsinline=true controls=true width="100%" max-width="280" %}
         {% endif %}
       {% elsif entry.preview %}
         {% if entry.preview contains '://' %}
@@ -57,7 +57,7 @@
   {% endif %}
 
   <!-- Entry bib key -->
-  <div id="{{ entry.key }}" class="{% if site.enable_publication_thumbnails %}col-sm-8{% else %}col-sm-10{% endif %}">
+  <div id="{{ entry.key }}" class="{% if site.enable_publication_thumbnails %}col-12 col-sm-8 col-md-8{% else %}col-sm-10{% endif %}">
     <!-- Title -->
     <div class="title">{{ entry.title }}</div>
     <!-- Author -->
