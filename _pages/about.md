@@ -4,11 +4,11 @@ title: about
 permalink: /
 subtitle: zhaojm25@mails.tsinghua.edu.cn
 
-profile:
-  align: right
-  image: fdu_1.jpg
-  image_circular: false # crops the image to make it circular
-  more_info: ""
+# profile:
+#   align: right
+#   image: fdu_1.jpg
+#   image_circular: false # crops the image to make it circular
+#   more_info: ""
 
 selected_papers_title: Publications
 selected_papers: true # includes a list of papers marked as "selected={true}"
