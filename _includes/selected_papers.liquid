@@ -1,10 +1,11 @@
 <div class="publications">
+<p class="text-muted" style="margin-top: -0.25rem;">
+  * Equal contribution
+</p>
   {% comment %}
     Custom sort: add `sortkey = {A01}` etc. to bib entries to control order.
     Falls back to default when sortkey is missing.
   {% endcomment %}
   {% bibliography --group_by none --sort_by sortkey --order descending --query @*[selected=true]* %}
 </div>
-<p class="text-muted" style="margin-top: -0.25rem;">
-  * Equal contribution
-</p>
+
