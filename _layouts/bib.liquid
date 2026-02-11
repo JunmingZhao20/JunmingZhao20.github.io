@@ -31,10 +31,10 @@
       {% if entry.preview_video %}
         {% assign video_path = entry.preview_video %}
         {% if video_path contains '://' %}
-          {% include video.liquid path=video_path class="preview z-depth-1 rounded" autoplay=true muted=true loop=true playsinline=true controls=true %}
+          {% include video.liquid path=video_path class="preview z-depth-1 rounded" autoplay=true muted=true loop=true playsinline=true controls=true width="240" %}
         {% else %}
           {% assign video_path = video_path | prepend: '/assets/video/' | relative_url %}
-          {% include video.liquid path=video_path class="preview z-depth-1 rounded" autoplay=true muted=true loop=true playsinline=true controls=true %}
+          {% include video.liquid path=video_path class="preview z-depth-1 rounded" autoplay=true muted=true loop=true playsinline=true controls=true width="240" %}
         {% endif %}
       {% elsif entry.preview %}
         {% if entry.preview contains '://' %}
