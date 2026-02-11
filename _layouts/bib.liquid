@@ -6,7 +6,7 @@
     {% if entry.preview_video or entry.preview %}
       {% assign has_preview = true %}
     {% endif %}
-    <div class="col-12 col-md-4 {% if has_preview %}preview{% else %}abbr{% endif %}">
+    <div class="col-12 col-md-4 {% if has_preview %}preview-col{% else %}abbr{% endif %}">
       {% comment %} Preview video/image (preferred), otherwise show venue badge {% endcomment %}
       {% if has_preview %}
         {% if entry.preview_video %}
