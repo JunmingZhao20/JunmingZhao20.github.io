@@ -1,10 +1,40 @@
 ---
 ---
-<div class="row">
+<div class="row align-items-start">
   {% if site.enable_publication_thumbnails %}
-    <div class="col-12 col-sm-4 col-md-4 abbr">
-      {% comment %} Venue badge {% endcomment %}
-      {%- if entry.abbr -%}
+    {% assign has_preview = false %}
+    {% if entry.preview_video or entry.preview %}
+      {% assign has_preview = true %}
+    {% endif %}
+    <div class="col-12 col-md-4 {% if has_preview %}preview{% else %}abbr{% endif %}">
+      {% comment %} Preview video/image (preferred), otherwise show venue badge {% endcomment %}
+      {% if has_preview %}
+        {% if entry.preview_video %}
+          {% assign video_path = entry.preview_video %}
+          {% if video_path contains '://' %}
+            {% include video.liquid path=video_path class="preview video-thumb z-depth-1 rounded" autoplay=true muted=true loop=true playsinline=true controls=true %}
+          {% else %}
+            {% assign video_path = video_path | prepend: '/assets/video/' | relative_url %}
+            {% include video.liquid path=video_path class="preview video-thumb z-depth-1 rounded" autoplay=true muted=true loop=true playsinline=true controls=true %}
+          {% endif %}
+        {% else %}
+          {% if entry.preview contains '://' %}
+            <img class="preview z-depth-1 rounded" src="{{ entry.preview }}">
+          {% else %}
+            {% assign entry_path = entry.preview | prepend: '/assets/img/publication_preview/' %}
+            {%
+              include figure.liquid
+              loading="eager"
+              path=entry_path
+              sizes = "200px"
+              class="preview z-depth-1 rounded"
+              zoomable=true
+              avoid_scaling=true
+              alt=entry.preview
+            %}
+          {% endif %}
+        {% endif %}
+      {% elsif entry.abbr %}
         {%- if site.data.venues[entry.abbr] -%}
           {% assign venue_style = null %}
           {% if site.data.venues[entry.abbr].color != blank %}
@@ -26,38 +56,11 @@
           <abbr class="badge rounded w-100">{{ entry.abbr }}</abbr>
         {% endif %}
       {% endif %}
-
-      {% comment %} Preview video (autoplay) takes precedence over image preview {% endcomment %}
-      {% if entry.preview_video %}
-        {% assign video_path = entry.preview_video %}
-        {% if video_path contains '://' %}
-          {% include video.liquid path=video_path class="preview z-depth-1 rounded" autoplay=true muted=true loop=true playsinline=true controls=true width="100%" max-width="280" %}
-        {% else %}
-          {% assign video_path = video_path | prepend: '/assets/video/' | relative_url %}
-          {% include video.liquid path=video_path class="preview z-depth-1 rounded" autoplay=true muted=true loop=true playsinline=true controls=true width="100%" max-width="280" %}
-        {% endif %}
-      {% elsif entry.preview %}
-        {% if entry.preview contains '://' %}
-          <img class="preview z-depth-1 rounded" src="{{ entry.preview }}">
-        {% else %}
-          {% assign entry_path = entry.preview | prepend: '/assets/img/publication_preview/' %}
-          {%
-            include figure.liquid
-            loading="eager"
-            path=entry_path
-            sizes = "200px"
-            class="preview z-depth-1 rounded"
-            zoomable=true
-            avoid_scaling=true
-            alt=entry.preview
-          %}
-        {% endif %}
-      {% endif %}
     </div>
   {% endif %}
 
   <!-- Entry bib key -->
-  <div id="{{ entry.key }}" class="{% if site.enable_publication_thumbnails %}col-12 col-sm-8 col-md-8{% else %}col-sm-10{% endif %}">
+  <div id="{{ entry.key }}" class="{% if site.enable_publication_thumbnails %}col-12 col-md-8{% else %}col-sm-10{% endif %}">
     <!-- Title -->
     <div class="title">{{ entry.title }}</div>
     <!-- Author -->
